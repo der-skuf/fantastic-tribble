@@ -12,11 +12,9 @@ urlpatterns = [
     url(r'^api-token-auth/', views.obtain_auth_token),
 
     # Restaurant
-    url(r'^restaurant/sign-in/$', auth_views.login,
-        {'template_name': 'restaurant/sign_in.html'},
+    url(r'^restaurant/sign-in/$', auth_views.LoginView.as_view(template_name = 'restaurant/sign_in.html'),
         name = 'restaurant-sign-in'),
-    url(r'^restaurant/sign-out', auth_views.logout,
-        {'next_page': '/'},
+    url(r'^restaurant/sign-out', auth_views.LogoutView.as_view(),
         name = 'restaurant-sign-out'),
     url(r'^restaurant/sign-up', views.restaurant_sign_up,
         name = 'restaurant-sign-up'),
@@ -34,7 +32,7 @@ urlpatterns = [
     url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
     # /convert-token (sign in/ sign up)
     # /revoke-token (sign out)
-    url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
+    #url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
 
 
     # APIs for CUSTOMERS
